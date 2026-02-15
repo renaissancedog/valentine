@@ -6,8 +6,9 @@
 	const sad3 = 'sad3.gif';
 	const sad4 = 'sad4.gif';
 	const sad5 = 'sad5.gif';
+	const sad6 = 'sad6.gif';
 
-	const gifs = [sad1, sad2, sad3, sad4, sad5, ask];
+	const gifs = [sad1, sad2, sad3, sad4, sad5, sad6, ask];
 	const text = [
 		'pleaseee?',
 		"don't do this to me :(",
@@ -17,6 +18,7 @@
 		'i thought we had something special!',
 		'but what if?',
 		"i'm gonna cry...",
+		'i even picked a song for us...',
 		'No'
 	];
 
@@ -33,10 +35,10 @@
 
 	function yes() {
 		resolved = true;
-		bigText = 'yayyy!! :3';
+		bigText = 'yayyy!!! :3';
 	}
 	function no() {
-		yesSize += 0.2;
+		yesSize *= 1.13;
 		noSize *= 0.95;
 		if (count < gifs.length - 1) {
 			currentGifIndex = count;
@@ -65,22 +67,25 @@
 </svelte:head>
 
 <div
-	class="flex h-screen flex-col items-center justify-center space-y-8 bg-linear-to-t from-pink-50 to-pink-200 font-sans text-black"
+	class="flex max-h-[300vw] min-h-screen flex-col items-center justify-center space-y-8 bg-linear-to-t from-pink-50 to-pink-200 text-center font-sans text-black"
 >
-	<img class="h-80" src={currentGif} alt="will you be my valentine pleaseeeee?" />
 	<h1 class="text-4xl font-bold text-pink-500 italic">{bigText}</h1>
+	<img class="max-h-60" src={currentGif} alt="will you be my valentine pleaseeeee?" />
 	{#if !resolved}
-		<div>
+		<div class="flex flex-row flex-nowrap items-center justify-center">
 			<button
-				class="m-4 inline-block max-h-[50vw] animate-bounce rounded bg-green-500 font-bold text-white hover:bg-green-600"
-				style="padding: {24 * yesSize}px; font-size: {24 * yesSize}px;"
+				class="m-4 animate-bounce rounded bg-green-500 font-bold text-white hover:bg-green-600"
+				style="padding: {16 * yesSize}px; font-size: {16 * yesSize}px;"
 				onclick={yes}>Yes!</button
 			>
 			<button
-				class="m-4 rounded bg-red-500 font-bold text-white hover:bg-red-600"
-				style="padding: {24 * noSize}px; font-size: {24 * noSize}px;"
+				class="m-4 flex-initial rounded bg-red-500 font-bold text-white hover:bg-red-600"
+				style="padding: {16 * noSize}px; font-size: {16 * noSize}px;"
 				onclick={no}>{noText}</button
 			>
 		</div>
+	{/if}
+	{#if resolved}
+		<h1 class="text-4xl font-bold text-pink-500 italic">i knew you would say yes!</h1>
 	{/if}
 </div>
