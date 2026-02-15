@@ -36,7 +36,6 @@
 		bigText = 'yayyy!! :3';
 	}
 	function no() {
-		count++;
 		yesSize += 0.2;
 		noSize *= 0.95;
 		if (count < gifs.length - 1) {
@@ -57,6 +56,7 @@
 			}
 			noTextIndex = newNoTextIndex;
 		}
+		count++;
 	}
 </script>
 
